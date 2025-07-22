@@ -26,7 +26,7 @@ const About = () => {
         <div className="relative z-20 text-white mt-40">
           <h1 className="text-4xl md:text-7xl font-bold mb-3">About Us</h1>
           <div className="mt-4 text-lg flex items-center gap-2 text-left">
-            <Link to="/" className="hover:underline">Home</Link> <span className="mx-1">→</span> Products
+            <Link to="/" className="hover:underline">Home</Link> <span className="mx-1">→</span> About us
           </div>
         </div>
       </div>

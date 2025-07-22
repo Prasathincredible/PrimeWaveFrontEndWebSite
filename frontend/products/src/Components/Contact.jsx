@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MapPin, Phone, Mail, Clock, Send, ArrowRight } from 'lucide-react';
+import { MapPin, Phone, Mail, Send } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Contact = () => {
@@ -31,29 +31,23 @@ const Contact = () => {
 
   return (
     <div className="w-full">
-
-            {/* Hero Section */}
-            <div
-              className="relative w-full h-[380px] md:h-[450px] bg-cover bg-center flex items-start justify-start px-6 md:px-20 py-10"
-              style={{ backgroundImage: "url('/green-bg.jpg')" }}
-            >
-              {/* Dark Overlay */}
-              <div className="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
-            
-              {/* Text Content */}
-              <div className="relative z-20 text-white mt-40">
-                <h1 className="text-4xl md:text-7xl font-bold mb-3">Get In Touch</h1>
-                <div className="mt-4 text-lg flex items-center gap-2 text-left">
-                <Link to="/" className="hover:underline">Home</Link> <span className="mx-1">→</span> Products
-                </div>
-              </div>
-            </div>
-
+      {/* Hero Section */}
+      <div
+        className="relative w-full h-[380px] md:h-[450px] bg-cover bg-center flex items-start justify-start px-6 md:px-20 py-10"
+        style={{ backgroundImage: "url('/green-bg.jpg')" }}
+      >
+        <div className="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
+        <div className="relative z-20 text-white mt-40">
+          <h1 className="text-4xl md:text-7xl font-bold mb-3">Get In Touch</h1>
+          <div className="mt-4 text-lg flex items-center gap-2 text-left">
+            <Link to="/" className="hover:underline">Home</Link> <span className="mx-1">→</span> Contact
+          </div>
+        </div>
+      </div>
 
       {/* Info Section */}
       <section className="py-20 bg-white px-4 sm:px-10 lg:px-24">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Left Text */}
           <div>
             <h2 className="text-5xl font-bold text-gray-900 leading-tight mb-4">
               We’re Ready to Help You! <br />
@@ -63,8 +57,6 @@ const Contact = () => {
               Feel free to reach out to us anytime. We’re available for queries, consultation, and business support.
             </p>
           </div>
-
-          {/* Right Image */}
           <div className="hidden md:block">
             <img
               src="/images/contact-side.jpg"
@@ -75,48 +67,43 @@ const Contact = () => {
         </div>
 
         {/* Cards */}
-        <div className="grid md:grid-cols-3 gap-8 mt-16">
-          {/* Location Card */}
+        <div className="grid md:grid-cols-3 gap-6 mt-16">
+          {/* Location */}
+          <div className="bg-white shadow-xl rounded-xl p-6 md:p-8 border border-gray-200 relative min-h-[200px] md:min-h-[240px]">
+            <div className="absolute -top-6 left-6 bg-yellow-400 p-3 sm:p-4 rounded-full">
+              <MapPin className="text-white" size={24} />
+              {/* Note: if you want auto scaling based on screen size, you could use 'w-6 h-6 sm:w-8 sm:h-8' instead */}
+            </div>
+            <h3 className="text-xl font-bold mt-10 mb-3">Locations</h3>
+            <p className="text-gray-700 text-[15px] leading-relaxed">
+              PRIMEWAVE INTERNATIONAL LLP<br />
+              146 E/1, Amman Nagar, Veerarakkiyam,<br />
+              Karur, Tamil Nadu - 639114
+            </p>
+          </div>
 
-          <div className="grid md:grid-cols-3 gap-8 mt-16">
-  {/* Location Card */}
-  <div className="bg-white shadow-xl rounded-xl p-6 md:p-8 border border-gray-200 relative min-h-[240px]">
-    <div className="absolute -top-5 left-5 bg-yellow-400 p-3 md:p-4 rounded-full">
-      <MapPin className="text-white" size={24} />
-    </div>
-    <h3 className="text-lg md:text-xl font-bold mt-10 mb-3">Locations</h3>
-    <p className="text-gray-700 text-sm md:text-[16px] leading-relaxed">
-      PRIMEWAVE INTERNATIONAL LLP<br />
-      146 E/1, Amman Nagar, Veerarakkiyam,<br />
-      Karur, Tamil Nadu - 639114
-    </p>
-  </div>
+          {/* Email */}
+          <div className="bg-white shadow-xl rounded-xl p-6 md:p-8 border border-gray-200 relative min-h-[200px] md:min-h-[240px]">
+            <div className="absolute -top-6 left-6 bg-yellow-400 p-3 sm:p-4 rounded-full">
+              <Mail className="text-white" size={24} />
+            </div>
+            <h3 className="text-xl font-bold mt-10 mb-3">Email Address</h3>
+            <p className="text-gray-700 text-[15px] leading-relaxed">
+              Info@primewaveinternational.com<br />
+              Operations@primewaveinternational.com
+            </p>
+          </div>
 
-  {/* Email Card */}
-  <div className="bg-white shadow-xl rounded-xl p-6 md:p-8 border border-gray-200 relative min-h-[240px]">
-    <div className="absolute -top-5 left-5 bg-yellow-400 p-3 md:p-4 rounded-full">
-      <Mail className="text-white" size={24} />
-    </div>
-    <h3 className="text-lg md:text-xl font-bold mt-10 mb-3">Email Address</h3>
-    <p className="text-gray-700 text-sm md:text-[16px] leading-relaxed">
-      Info@primewaveinternational.com<br />
-      Operations@primewaveinternational.com
-    </p>
-  </div>
-
-  {/* Phone Card */}
-  <div className="bg-white shadow-xl rounded-xl p-6 md:p-8 border border-gray-200 relative min-h-[240px]">
-    <div className="absolute -top-5 left-5 bg-yellow-400 p-3 md:p-4 rounded-full">
-      <Phone className="text-white" size={24} />
-    </div>
-    <h3 className="text-lg md:text-xl font-bold mt-10 mb-3">Phone Number</h3>
-    <p className="text-gray-700 text-sm md:text-[16px] leading-relaxed">
-      +91 9488133430
-    </p>
-  </div>
-</div>
-
-
+          {/* Phone */}
+          <div className="bg-white shadow-xl rounded-xl p-6 md:p-8 border border-gray-200 relative min-h-[200px] md:min-h-[240px]">
+            <div className="absolute -top-6 left-6 bg-yellow-400 p-3 sm:p-4 rounded-full">
+              <Phone className="text-white" size={24} />
+            </div>
+            <h3 className="text-xl font-bold mt-10 mb-3">Phone Number</h3>
+            <p className="text-gray-700 text-[15px] leading-relaxed">
+              +91 9488133430
+            </p>
+          </div>
         </div>
       </section>
 
