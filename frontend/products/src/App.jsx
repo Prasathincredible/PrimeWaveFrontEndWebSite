@@ -7,11 +7,13 @@ import Contact from './Components/Contact';
 import TextilesGoods from './Components/TextilesGoods';
 import AgroCommodities from './Components/AgroCommodities';
 import OrganicFertilizers from './Components/OrganicFertilizers';
+import ScrollTop from './Components/ScrollTop';
 import Layout from './Components/Layout';
 
 function App() {
   return (
     <div className="App w-full h-full p-0 m-0">
+       <ScrollTop/>
       <Routes>
         {/* Apply Layout to all routes */}
         <Route path="/*" element={<Layout />}>

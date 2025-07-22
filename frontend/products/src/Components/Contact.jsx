@@ -77,40 +77,46 @@ const Contact = () => {
         {/* Cards */}
         <div className="grid md:grid-cols-3 gap-8 mt-16">
           {/* Location Card */}
-          <div className="bg-white shadow-xl rounded-xl p-8 border border-gray-200 relative min-h-[240px]">
-            <div className="absolute -top-6 left-6 bg-yellow-400 p-4 rounded-full">
-              <MapPin className="text-white" size={32} />
-            </div>
-            <h3 className="text-xl font-bold mt-10 mb-3">Locations</h3>
-            <p className="text-gray-700 text-[16px] leading-relaxed">
-              PRIMEWAVE INTERNATIONAL LLP<br />
-              146 E/1, Amman Nagar, Veerarakkiyam,<br />
-              Karur, Tamil Nadu - 639114
-            </p>
-          </div>
 
-          {/* Email Card */}
-          <div className="bg-white shadow-xl rounded-xl p-8 border border-gray-200 relative min-h-[240px]">
-            <div className="absolute -top-6 left-6 bg-yellow-400 p-4 rounded-full">
-              <Mail className="text-white" size={32} />
-            </div>
-            <h3 className="text-xl font-bold mt-10 mb-3">Email Address</h3>
-            <p className="text-gray-700  text-[16px] leading-relaxed">
-             Info@primewaveinternational.com<br />
-             Operations@primewaveinternational.com
-            </p>
-          </div>
+          <div className="grid md:grid-cols-3 gap-8 mt-16">
+  {/* Location Card */}
+  <div className="bg-white shadow-xl rounded-xl p-6 md:p-8 border border-gray-200 relative min-h-[240px]">
+    <div className="absolute -top-5 left-5 bg-yellow-400 p-3 md:p-4 rounded-full">
+      <MapPin className="text-white" size={24} />
+    </div>
+    <h3 className="text-lg md:text-xl font-bold mt-10 mb-3">Locations</h3>
+    <p className="text-gray-700 text-sm md:text-[16px] leading-relaxed">
+      PRIMEWAVE INTERNATIONAL LLP<br />
+      146 E/1, Amman Nagar, Veerarakkiyam,<br />
+      Karur, Tamil Nadu - 639114
+    </p>
+  </div>
 
-          {/* Phone Card */}
-          <div className="bg-white shadow-xl rounded-xl p-8 border border-gray-200 relative min-h-[240px]">
-            <div className="absolute -top-6 left-6 bg-yellow-400 p-4 rounded-full">
-              <Phone className="text-white" size={32} />
-            </div>
-            <h3 className="text-xl font-bold mt-10 mb-3">Phone Number</h3>
-            <p className="text-gray-700 text-[16px] leading-relaxed">
-              +91 9488133430<br />
-            </p>
-          </div>
+  {/* Email Card */}
+  <div className="bg-white shadow-xl rounded-xl p-6 md:p-8 border border-gray-200 relative min-h-[240px]">
+    <div className="absolute -top-5 left-5 bg-yellow-400 p-3 md:p-4 rounded-full">
+      <Mail className="text-white" size={24} />
+    </div>
+    <h3 className="text-lg md:text-xl font-bold mt-10 mb-3">Email Address</h3>
+    <p className="text-gray-700 text-sm md:text-[16px] leading-relaxed">
+      Info@primewaveinternational.com<br />
+      Operations@primewaveinternational.com
+    </p>
+  </div>
+
+  {/* Phone Card */}
+  <div className="bg-white shadow-xl rounded-xl p-6 md:p-8 border border-gray-200 relative min-h-[240px]">
+    <div className="absolute -top-5 left-5 bg-yellow-400 p-3 md:p-4 rounded-full">
+      <Phone className="text-white" size={24} />
+    </div>
+    <h3 className="text-lg md:text-xl font-bold mt-10 mb-3">Phone Number</h3>
+    <p className="text-gray-700 text-sm md:text-[16px] leading-relaxed">
+      +91 9488133430
+    </p>
+  </div>
+</div>
+
+
         </div>
       </section>
 
