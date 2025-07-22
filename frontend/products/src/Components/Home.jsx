@@ -1,4 +1,3 @@
-import brochure from '../assets/brochure.pdf';
 
 const Home = () => {
   return (

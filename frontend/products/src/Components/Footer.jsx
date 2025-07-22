@@ -74,14 +74,6 @@ const Footer = () => {
     <li>Time Zone: GMT+5:30 (Indian Standard Time)</li>
   </ul>
 </div>
-
-
-
-      </div>
-
-      {/* Bottom line */}
-      <div className="text-center text-sm text-gray-500 mt-10 pt-6 border-t border-gray-700">
-        © {new Date().getFullYear()} Orgarium. All rights reserved.
       </div>
     </footer>
   );

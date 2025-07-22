@@ -25,7 +25,6 @@ function App() {
           <Route path="products/agro-commodities" element={<AgroCommodities />} />
           <Route path="products/organic-fertilizers" element={<OrganicFertilizers />} />
         </Route>
-        
       </Routes>
     </div>
   );
