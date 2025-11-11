@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Send } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 import { Link } from 'react-router-dom';
 
 const Contact = () => {
@@ -24,9 +25,35 @@ const Contact = () => {
     const fullMessage = `Hello, I am ${name}%0AEmail: ${email}%0A%0A${message}`;
     const phoneNumber = "919488133430";
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${fullMessage}`;
-    window.open(whatsappURL, "_blank");
-    setFormData({ name: '', email: '', message: '' });
-    setStatus('Redirecting to WhatsApp...');
+
+    // Try sending with EmailJS if credentials are provided via Vite env vars
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    if (serviceId && templateId && publicKey) {
+      setStatus('Sending message...');
+      emailjs.send(serviceId, templateId, {
+        from_name: name,
+        from_email: email,
+        message: message,
+      }, publicKey)
+      .then((result) => {
+        setStatus('Message sent — thank you!');
+        setFormData({ name: '', email: '', message: '' });
+      }, (error) => {
+        // On failure, fallback to WhatsApp
+        console.error('EmailJS error:', error);
+        setStatus('Failed to send email, opening WhatsApp...');
+        window.open(whatsappURL, "_blank");
+        setFormData({ name: '', email: '', message: '' });
+      });
+    } else {
+      // If EmailJS not configured, fallback to WhatsApp redirect
+      window.open(whatsappURL, "_blank");
+      setFormData({ name: '', email: '', message: '' });
+      setStatus('Redirecting to WhatsApp...');
+    }
   };
 
   return (
