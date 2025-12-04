@@ -22,39 +22,36 @@ const categories = {
     { name: 'Corporate Uniforms', image: '/images/corporate_images.jpg', description: 'Smart uniforms that reflect professionalism.\nDesigned for daily wear and brand identity.\nComfort meets corporate style.' },
   ],
   'Industrial & Technical Textiles': [
-    {
-      name: 'Fire and Waterproof Fabrics',
-      image: '/images/waterproof_fabrics.jpg',
-      description: 'Fire-resistant & waterproof fabrics (Treated Polyester & Nylon Blends, PU/PVC Coated Polyester & Nylon, GORE-TEX & PTFE Laminated Fabrics, Waxed & Rubberized Cotton)'
-    },
-    {
-      name: 'Medical Textiles',
-      image: '/images/medical1.jpg',
-      description: 'Medical textiles (surgical gowns, PPE kits, masks, wound dressings)'
-    },
-    {
-      name: 'Geotextiles',
-      image: '/images/coco-coir.jpg',
-      description: 'Geotextiles for construction (Coir & jute [natural fibre based], Woven & Non – Owen [Synthetic – Polypropylene/Polyester])'
-    },
+    { name: 'Fire and Waterproof Fabrics', image: '/images/waterproof_fabrics.jpg', description: 'Fire-resistant & waterproof fabrics (Treated Polyester & Nylon Blends, PU/PVC Coated Polyester & Nylon, GORE-TEX & PTFE Laminated Fabrics, Waxed & Rubberized Cotton)' },
+    { name: 'Medical Textiles', image: '/images/medical1.jpg', description: 'Medical textiles (surgical gowns, PPE kits, masks, wound dressings)' },
+    { name: 'Geotextiles', image: '/images/coco-coir.jpg', description: 'Geotextiles for construction (Coir & jute [natural fibre based], Woven & Non – Owen [Synthetic – Polypropylene/Polyester])' },
   ],
   'Sustainable Textiles': [
-    {
-      name: 'Bamboo and Hemp Fabrics',
-      image: '/images/bamboo-fabrics.jpg',
-      description: 'Bamboo and hemp fabrics (Bamboo Cotton Blends, Silk, Terry & Fleece, Antibacterial Bamboo Fabrics, Hemp Linen, Hemp Canvas & Twill, Pure Hemp Fabrics, Hemp Cotton Blends)'
-    },
-    {
-      name: 'RPET Clothing',
-      image: '/images/RPET.jpg',
-      description: 'Recycled polyester clothing (T-Shirts & Activewears, Blends, Jackets & Outerwear)'
-    },
+    { name: 'Bamboo and Hemp Fabrics', image: '/images/bamboo-fabrics.jpg', description: 'Bamboo and hemp fabrics (Bamboo Cotton Blends, Silk, Terry & Fleece, Antibacterial Bamboo Fabrics, Hemp Linen, Hemp Canvas & Twill, Pure Hemp Fabrics, Hemp Cotton Blends)' },
+    { name: 'RPET Clothing', image: '/images/RPET.jpg', description: 'Recycled polyester clothing (T-Shirts & Activewears, Blends, Jackets & Outerwear)' },
   ],
 };
+
+// Create dummy slides for all products
+const productSlides = {};
+
+Object.values(categories).flat().forEach((product) => {
+  const folder = product.name.replaceAll(' ', '_');   // Bedsheets → Bedsheets
+  const base = product.name.replaceAll(' ', '').toLowerCase(); // Bedsheets → bedsheets
+
+  productSlides[product.name] = Array.from(
+    { length: 20 },   // Change 20 to your image count
+    (_, i) => `/images/${folder}/${base}${i + 1}.jpg`
+  );
+});
+
 
 const TextilesGoods = () => {
   const [selectedCategories, setSelectedCategories] = useState(['Home Textiles']);
   const [searchTerm, setSearchTerm] = useState('');
+  const [modalOpen, setModalOpen] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [activeProduct, setActiveProduct] = useState(null);
   const navigate = useNavigate();
 
   const toggleCategory = (category) => {
@@ -71,11 +68,22 @@ const TextilesGoods = () => {
       product.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
+  const openModal = (productName) => {
+    setActiveProduct(productName);
+    setCurrentSlide(0);
+    setModalOpen(true);
+  };
+  const closeModal = () => setModalOpen(false);
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev === 0 ? productSlides[activeProduct].length - 1 : prev - 1));
+  };
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev === productSlides[activeProduct].length - 1 ? 0 : prev + 1));
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 p-6">
-      <h1 className="text-3xl font-bold text-center text-green-800 mb-6">
-        Textiles Goods
-      </h1>
+      <h1 className="text-3xl font-bold text-center text-green-800 mb-6">Textiles Goods</h1>
 
       <div className="mb-4">
         <button
@@ -107,72 +115,111 @@ const TextilesGoods = () => {
 
         {/* Products */}
         <div className="md:w-4/5 w-full">
-
-        {/* Search */}
-<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-  <h2 className="text-lg font-semibold">
-    Showing {filteredProducts.length} products
-  </h2>
-
-  <div className="flex w-full sm:w-auto items-center border-2 border-green-500 rounded-md overflow-hidden">
-    <input
-      type="text"
-      placeholder="Search products..."
-      value={searchTerm}
-      onChange={(e) => setSearchTerm(e.target.value)}
-      className="w-full px-4 py-2 text-gray-700 placeholder-gray-500 focus:outline-none"
-    />
-    <button
-      onClick={() => console.log('Search clicked')} // Optional: can be used to trigger manual search
-      className="bg-green-600 text-white px-4 py-2 hover:bg-green-700 transition"
-    >
-      Search
-    </button>
-  </div>
-</div>
-
-          
+          {/* Search */}
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+            <h2 className="text-lg font-semibold">Showing {filteredProducts.length} products</h2>
+            <div className="flex w-full sm:w-auto items-center border-2 border-green-500 rounded-md overflow-hidden">
+              <input
+                type="text"
+                placeholder="Search products..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full px-4 py-2 text-gray-700 placeholder-gray-500 focus:outline-none"
+              />
+              <button
+                onClick={() => console.log('Search clicked')}
+                className="bg-green-600 text-white px-4 py-2 hover:bg-green-700 transition"
+              >
+                Search
+              </button>
+            </div>
+          </div>
 
           {filteredProducts.length === 0 ? (
             <p className="text-gray-600">No products found.</p>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-             {filteredProducts.map((product, idx) => (
-  <motion.div
-    key={idx}
-    initial={{ opacity: 0, y: 30 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5, delay: idx * 0.1 }}
-    className="relative group bg-white rounded-lg overflow-hidden shadow hover:shadow-lg transition h-80"
-  >
-    {/* Image */}
-    <img
-      src={product.image}
-      alt={product.name}
-      className="w-full h-full object-cover"
-    />
+              {filteredProducts.map((product, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  className="relative group bg-white rounded-lg overflow-hidden shadow hover:shadow-lg transition h-80"
+                >
+                  <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
 
-    {/* Bottom Product Name (always visible, hidden on hover) */}
-    <div className="absolute bottom-0 left-0 right-0 bg-white/80 text-green-900 text-center py-2 font-semibold transition-opacity duration-500 group-hover:opacity-0">
-      {product.name}
-    </div>
+                  <div className="absolute bottom-0 left-0 right-0 bg-white/80 text-green-900 text-center py-2 font-semibold transition-opacity duration-500 group-hover:opacity-0">
+                    {product.name}
+                  </div>
 
-    {/* Hover Overlay */}
-    <div className="absolute inset-0 flex flex-col justify-end bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-      <div className="bg-white/90 backdrop-blur-sm text-left p-4 transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out">
-        <h3 className="text-lg font-bold text-green-800">{product.name}</h3>
-        <p className="text-gray-700 text-sm mt-1 whitespace-pre-line">
-          {product.description}
-        </p>
-      </div>
-    </div>
-  </motion.div>
-))}
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-0 flex flex-col justify-end bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="bg-white/90 backdrop-blur-sm text-left p-4 transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                      <h3 className="text-lg font-bold text-green-800">{product.name}</h3>
+                      <p className="text-gray-700 text-sm mt-1 whitespace-pre-line">{product.description}</p>
 
+                      {/* View More Button for all products */}
+                      <button
+                        onClick={() => openModal(product.name)}
+                        className="mt-3 bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition"
+                      >
+                        View More
+                      </button>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           )}
         </div>
       </div>
+
+      {/* Modal for Product Slides */}
+      {modalOpen && activeProduct && (
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+          <div className="relative w-11/12 md:w-3/4 lg:w-1/2 bg-white rounded-lg overflow-hidden">
+            {/* Close button */}
+            <button
+              onClick={closeModal}
+              className="absolute top-2 right-2 text-red-600 font-bold text-2xl z-50"
+            >
+              &times;
+            </button>
+
+            {/* Slide container */}
+            <div className="flex items-center justify-between relative">
+              {/* Left navigation */}
+              <button
+                onClick={prevSlide}
+                className="absolute left-0 z-50 h-full px-4 text-green-700 font-bold text-3xl flex items-center justify-center hover:bg-white/30 transition"
+              >
+                &#8592;
+              </button>
+
+              {/* Slide image */}
+              <img
+                src={productSlides[activeProduct][currentSlide]}
+                alt={`Slide ${currentSlide + 1}`}
+                className="w-full h-96 object-contain"
+              />
+
+              {/* Right navigation */}
+              <button
+                onClick={nextSlide}
+                className="absolute right-0 z-50 h-full px-4 text-green-700 font-bold text-3xl flex items-center justify-center hover:bg-white/30 transition"
+              >
+                &#8594;
+              </button>
+            </div>
+
+            {/* Slide counter */}
+            <p className="text-center text-gray-700 py-2">
+              {activeProduct}: Slide {currentSlide + 1} / {productSlides[activeProduct].length}
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
