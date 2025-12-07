@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import { FaFacebookF, FaLinkedinIn, FaInstagram } from "react-icons/fa";
+import { FaFacebookF, FaLinkedinIn, FaInstagram } from "react-icons/fa"; // Added FaXTwitter
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThreads } from "@fortawesome/free-brands-svg-icons";
+import { SiX } from "react-icons/si";
 
 
 const Footer = () => {
@@ -21,18 +22,21 @@ const Footer = () => {
               <FaFacebookF className="text-white bg-gray-700 p-3 rounded-full text-5xl hover:bg-green-600" />
             </a>
 
-<a
-  href="https://www.threads.net/@primewaveinternational"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  <FontAwesomeIcon
-    icon={faThreads}
-    className="text-white bg-gray-700 p-3 rounded-full text-2xl hover:bg-green-600"
-  />
-</a>
+            <a
+              href="https://www.threads.net/@primewaveinternational"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FontAwesomeIcon
+                icon={faThreads}
+                className="text-white bg-gray-700 p-3 rounded-full text-2xl hover:bg-green-600"
+              />
+            </a>
 
-           
+            <a href="https://x.com/Primewave_LLP" target="_blank" rel="noopener noreferrer">
+                <SiX className="text-white bg-gray-700 p-3 rounded-full text-5xl hover:bg-green-600" />
+            </a>
+
             <a href="https://www.linkedin.com/company/primewave-international-llp" target="_blank" rel="noopener noreferrer">
               <FaLinkedinIn className="text-white bg-gray-700 p-3 rounded-full text-5xl hover:bg-green-600" />
             </a>
@@ -64,16 +68,16 @@ const Footer = () => {
         </div>
 
         {/* Contact */}
-<div>
-  <h3 className="text-xl font-semibold mb-4">Contact</h3>
-  <ul className="space-y-2 text-gray-400 text-sm">
-    <li>Email: Info@primewaveinternational.com</li>
-    <li>Phone: +91 94881 33430</li>
-    <li>Location: Karur, Tamil Nadu</li>
-    <li>Working Hours: Mon - Sat (9AM - 6PM)</li>
-    <li>Time Zone: GMT+5:30 (Indian Standard Time)</li>
-  </ul>
-</div>
+        <div>
+          <h3 className="text-xl font-semibold mb-4">Contact</h3>
+          <ul className="space-y-2 text-gray-400 text-sm">
+            <li>Email: Info@primewaveinternational.com</li>
+            <li>Phone: +91 94881 33430</li>
+            <li>Location: Karur, Tamil Nadu</li>
+            <li>Working Hours: Mon - Sat (9AM - 6PM)</li>
+            <li>Time Zone: GMT+5:30 (Indian Standard Time)</li>
+          </ul>
+        </div>
       </div>
     </footer>
   );

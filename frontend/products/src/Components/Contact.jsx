@@ -76,14 +76,17 @@ const Contact = () => {
       <section className="py-20 bg-white px-4 sm:px-10 lg:px-24">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-5xl font-bold text-gray-900 leading-tight mb-4">
-              We’re Ready to Help You! <br />
-              Need Any Foods or Consultations?
-            </h2>
-            <p className="text-gray-600 text-lg mt-2">
-              Feel free to reach out to us anytime. We’re available for queries, consultation, and business support.
-            </p>
-          </div>
+  <h2 className="text-5xl font-bold text-gray-900 leading-tight mb-4">
+    Connect with us to explore strategic export partnerships <br />
+    and global trade solutions.
+  </h2>
+
+  <p className="text-gray-600 text-lg mt-2">
+    We are committed to supporting your business with expertise, reliability,
+    and tailored opportunities.
+  </p>
+</div>
+
           <div className="hidden md:block">
             <img
               src="/images/contact-side.jpg"
